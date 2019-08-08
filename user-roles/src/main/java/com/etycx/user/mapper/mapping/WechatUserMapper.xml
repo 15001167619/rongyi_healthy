@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.user.mapper.WechatUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.etycx.remote.entity.WechatUser">
+        <id column="id" property="id" />
+        <result column="user_identity" property="userIdentity" />
+        <result column="nick_name" property="nickName" />
+        <result column="avatar_url" property="avatarUrl" />
+        <result column="phone" property="phone" />
+        <result column="gender" property="gender" />
+        <result column="open_id" property="openId" />
+        <result column="country" property="country" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="language" property="language" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_identity, nick_name, avatar_url, phone, gender, open_id, country, province, city, `language`, remark, create_time
+    </sql>
+
+</mapper>

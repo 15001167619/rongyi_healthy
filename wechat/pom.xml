@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>wechat</artifactId>
+    <groupId>com.etycx.healthy</groupId>
+    <version>1.0.0</version>
+    <name>wechat</name>
+    <description> wechat---服务实现 </description>
+
+
+    <parent>
+        <artifactId>rongyi_healthy</artifactId>
+        <groupId>com.etycx</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <weixin-java-miniapp.version>3.4.0</weixin-java-miniapp.version>
+        <java-emoji-converter.version>0.1.1</java-emoji-converter.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.kuding</groupId>
+            <artifactId>prometheus-spring-boot-starter</artifactId>
+            <version>0.2.2-personal</version>
+        </dependency>
+        <dependency>
+            <groupId>com.etycx.healthy</groupId>
+            <artifactId>remote-interface</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>java-emoji-converter</artifactId>
+            <version>${java-emoji-converter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-miniapp</artifactId>
+            <version>${weixin-java-miniapp.version}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

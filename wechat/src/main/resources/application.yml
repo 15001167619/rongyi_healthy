@@ -1,0 +1,44 @@
+###################  钉钉异常配置  ###################
+exceptionnotice:
+  dinding:
+    phone-num: 15001167619
+    web-hook: https://oapi.dingtalk.com/robot/send?access_token=3b05518fc26666b5c38c4a33414380f9a88fdd6f25043a8bd5b688c09ef863de
+  included-trace-package: com.etycx.wechat
+  notice-type: dingding
+  listen-type: common
+  open-notice: true
+  exclude-exceptions:
+    - java.lang.IllegalArgumentException
+
+###################  项目启动端口  ###################
+server:
+  port: 6081
+
+###################  spring配置  ###################
+spring:
+  profiles:
+    active: dev
+  application:
+    name: 微信服务
+
+wx:
+  miniapp:
+    configs:
+      - appid: wx36e7922591e4bd0f #患者小程序的appid
+        secret: 1ec6e7686d44a3ccbf766a66ca40cea1 #微信小程序的Secret
+        token: #微信小程序消息服务器配置的token
+        aesKey: #微信小程序消息服务器配置的EncodingAESKey
+        msgDataFormat: JSON
+      - appid: wx7871b52a7139068b #微信小程序的appid
+        secret: cf4c9d97480ab4bc98fa407d3deb14ee #微信小程序的Secret
+        token: #微信小程序消息服务器配置的token
+        aesKey: #微信小程序消息服务器配置的EncodingAESKey
+        msgDataFormat: JSON
+
+
+logging:
+  level.root: info
+  level.com.etycx: debug
+  file: /mylog/wechat.log
+
+

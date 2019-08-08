@@ -1,0 +1,15 @@
+###################  项目启动端口  ###################
+server:
+  port: 443
+
+###################  spring配置  ###################
+spring:
+  profiles:
+    active: dev
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+  resources:
+    static-locations: classpath:/static/, classpath:/blog/
+

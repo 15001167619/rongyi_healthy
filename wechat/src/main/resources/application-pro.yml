@@ -1,0 +1,12 @@
+dubbo:
+  application:
+    name: healthy-provider-wechat
+  registry:
+    protocol: zookeeper
+    address: 127.0.0.1:2181
+  protocol:
+    name: dubbo
+    port: 20890
+  version: 1.0.0
+  scan:
+    base-packages: com.etycx.wechat

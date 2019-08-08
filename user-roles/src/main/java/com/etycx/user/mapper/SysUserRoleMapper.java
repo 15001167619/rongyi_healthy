@@ -1,0 +1,16 @@
+package com.etycx.user.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.etycx.remote.entity.SysUserRole;
+
+/**
+ * <p>
+ * 用户和角色关联表 Mapper 接口
+ * </p>
+ *
+ * @author 武海升
+ * @date  2019-08-07
+ */
+public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
+
+}
