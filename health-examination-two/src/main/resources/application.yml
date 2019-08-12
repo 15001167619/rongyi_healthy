@@ -1,0 +1,67 @@
+# 项目相关配置
+muxiaoqian:
+  # 名称
+  name: 容医健康
+  # 版本
+  version: 1.0.0
+  # 版权年份
+  copyrightYear: 2019
+  # 文件上传
+  profile: /health/bootProjects/profile/
+  #测试环境资料路径： c://profile/    /health/bootProjects/profile
+  # 获取ip地址开关
+  addressEnabled: true
+
+
+exceptionnotice:
+  dinding:
+    phone-num: 15001167619
+    web-hook: https://oapi.dingtalk.com/robot/send?access_token=3b05518fc26666b5c38c4a33414380f9a88fdd6f25043a8bd5b688c09ef863de
+  included-trace-package: health.examination.two
+  notice-type: dingding
+  listen-type: common
+  open-notice: true
+  exclude-exceptions:
+    - java.lang.IllegalArgumentException
+
+###################  项目启动端口  ###################
+server:
+  port: 6083
+
+###################  spring配置  ###################
+spring:
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size:  50MB
+      max-request-size:  50MB
+  application:
+    name: 体检中心二服务
+
+###################  mybatis-plus 配置  ###################
+mybatis-plus:
+  mapper-locations: health/examination/two/mapper/mapping/*.xml
+  typeAliasesPackage: com.etycx.remote.entity
+  global-config:
+    id-type: 0  # 0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: true #驼峰下划线转换
+    refresh-mapper: true #刷新mapper
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+
+
+logging:
+  level.root: info
+  level.com.etycx: debug
+  file: /mylog/health-examination-two.log
+
+

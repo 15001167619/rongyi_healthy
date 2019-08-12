@@ -15,6 +15,8 @@
         <module>user-roles</module>
         <module>rest-api</module>
         <module>wechat</module>
+        <module>health-examination-one</module>
+        <module>health-examination-two</module>
     </modules>
 
     <parent>
