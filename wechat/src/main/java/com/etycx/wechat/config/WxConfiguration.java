@@ -35,6 +35,7 @@ public class WxConfiguration {
 
     private static Map<String, WxMaMessageRouter> routers = Maps.newHashMap();
     private static Map<String, WxMaService> maServices = Maps.newHashMap();
+    private static Map<String, Object> payServices = Maps.newHashMap();
 
     public static Map<String, WxMaMessageRouter> getRouters() {
         return routers;
@@ -49,13 +50,22 @@ public class WxConfiguration {
         return wxService;
     }
 
+
+    public static Map<String, Object> getPayService() {
+        Map<String, Object> payServices = WxConfiguration.payServices;
+        if (payServices == null) {
+            throw new IllegalArgumentException("请添加下相关配置");
+        }
+        return payServices;
+    }
+
     @PostConstruct
     public void init() {
         List<WxMaProperties.Config> configs = this.properties.getConfigs();
         if (configs == null) {
             throw new RuntimeException("大哥，拜托先看下项目首页的说明（readme文件），添加下相关配置，注意别配错了！");
         }
-
+        payServices = this.properties.getPayConfig();
         maServices = configs.stream()
                 .map(a -> {
                     WxMaInMemoryConfig config = new WxMaInMemoryConfig();

@@ -21,8 +21,24 @@ spring:
   application:
     name: 微信服务
 
+###################  微信授权  ###################
 wx:
   miniapp:
+    ###################  微信支付  ###################
+    appId: wx36e7922591e4bd0f
+    secret: 1ec6e7686d44a3ccbf766a66ca40cea1
+    #商户号
+    mchId: shanghuhao
+    #支付签名
+    paySignKey: zhifuqianming
+    #交易类型
+    tradeType: JSAPI
+    #证书名称，对应不同的商户号
+    certName: /cert/apiclient_cert.p12
+    #支付回调地址
+    notifyUrl: https://www.rongyijiankang.com/api/pay/notify
+    #支付预付订单地址
+    uniformorder: https://api.mch.weixin.qq.com/pay/unifiedorder
     configs:
       - appid: wx36e7922591e4bd0f #患者小程序的appid
         secret: 1ec6e7686d44a3ccbf766a66ca40cea1 #微信小程序的Secret
@@ -34,6 +50,8 @@ wx:
         token: #微信小程序消息服务器配置的token
         aesKey: #微信小程序消息服务器配置的EncodingAESKey
         msgDataFormat: JSON
+
+
 
 
 logging:
