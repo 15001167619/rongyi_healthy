@@ -119,14 +119,24 @@ public class ApiHospitalController extends BaseApiController {
     /**
      * @description  获取医院科室列表
      */
-    @PostMapping("1/departmentList")
+    @PostMapping("departmentList")
     @Security(appKey = InterfaceAppKeyConstants.HOSPITAL_LIST_APP_KEY,interfaceName = "hospitalList")
     public Object departmentList(@RequestBody Map<String,Object> params){
         try {
             String dataParams = (String)params.get("dataParams");
             if(StringUtils.isNotEmpty(dataParams)){
                 Map<String, Object> dataParamsMap = getDataParamsMap(dataParams);
-                baseVo = departmentServiceOne.getDepartmentList(dataParamsMap);
+                Integer healthExamination = (Integer) dataParamsMap.get("healthExamination");
+                switch (healthExamination){
+                    case 1:
+                        baseVo = departmentServiceOne.getDepartmentList(dataParamsMap);
+                        break;
+                    case 2:
+                        baseVo = departmentServiceTwo.getDepartmentList(dataParamsMap);
+                        break;
+                    default:
+                        break;
+                }
             }
         } catch (Exception e) {
             throw new RemoteServiceException(501, "远程服务异常");
@@ -144,7 +154,17 @@ public class ApiHospitalController extends BaseApiController {
             String dataParams = (String)params.get("dataParams");
             if(StringUtils.isNotEmpty(dataParams)){
                 Map<String, Object> dataParamsMap = getDataParamsMap(dataParams);
-                baseVo = departmentServiceOne.addDepartment(dataParamsMap);
+                Integer healthExamination = (Integer) dataParamsMap.get("healthExamination");
+                switch (healthExamination){
+                    case 1:
+                        baseVo = departmentServiceOne.addDepartment(dataParamsMap);
+                        break;
+                    case 2:
+                        baseVo = departmentServiceTwo.addDepartment(dataParamsMap);
+                        break;
+                    default:
+                        break;
+                }
             }
         } catch (Exception e) {
             throw new RemoteServiceException(501, "远程服务异常");
@@ -162,7 +182,17 @@ public class ApiHospitalController extends BaseApiController {
             String dataParams = (String)params.get("dataParams");
             if(StringUtils.isNotEmpty(dataParams)){
                 Map<String, Object> dataParamsMap = getDataParamsMap(dataParams);
-                baseVo = departmentServiceOne.updateDepartment(dataParamsMap);
+                Integer healthExamination = (Integer) dataParamsMap.get("healthExamination");
+                switch (healthExamination){
+                    case 1:
+                        baseVo = departmentServiceOne.updateDepartment(dataParamsMap);
+                        break;
+                    case 2:
+                        baseVo = departmentServiceTwo.updateDepartment(dataParamsMap);
+                        break;
+                    default:
+                        break;
+                }
             }
         } catch (Exception e) {
             throw new RemoteServiceException(501, "远程服务异常");
@@ -180,7 +210,17 @@ public class ApiHospitalController extends BaseApiController {
             String dataParams = (String)params.get("dataParams");
             if(StringUtils.isNotEmpty(dataParams)){
                 Map<String, Object> dataParamsMap = getDataParamsMap(dataParams);
-                baseVo = departmentServiceOne.delDepartment(dataParamsMap);
+                Integer healthExamination = (Integer) dataParamsMap.get("healthExamination");
+                switch (healthExamination){
+                    case 1:
+                        baseVo = departmentServiceOne.delDepartment(dataParamsMap);
+                        break;
+                    case 2:
+                        baseVo = departmentServiceTwo.delDepartment(dataParamsMap);
+                        break;
+                    default:
+                        break;
+                }
             }
         } catch (Exception e) {
             throw new RemoteServiceException(501, "远程服务异常");

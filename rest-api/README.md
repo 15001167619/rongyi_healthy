@@ -17,6 +17,7 @@ post  http://m.ximalaya.com/open-activities/activityTrace/drawActivityItemByItem
   "timestamp":1565233484057,
   "dataParams":"ODtF9ayYg93tipUa9T72lw==",
   "apiSign":"b7e54cf972f1ce68ec09ad24f1b90bac"
+  "healthExamination": 1
 }
 ```
 ###  说明
@@ -24,6 +25,8 @@ post  http://m.ximalaya.com/open-activities/activityTrace/drawActivityItemByItem
 > appKey  接口调用秘钥  通过 com.etycx.rest.common.utils.UuidUtils 工具类中 main方法生成
 
 > interfaceName  调用接口名称
+
+> healthExamination  医院id
 
 > timestamp  时间戳
 
