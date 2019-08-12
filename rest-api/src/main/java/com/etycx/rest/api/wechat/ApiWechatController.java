@@ -44,9 +44,9 @@ public class ApiWechatController {
     @GetMapping("phone")
     public Object phone(@RequestParam(value = "userType") Integer userType,@RequestParam(value = "sessionKey") String sessionKey,
                        @RequestParam(value = "signature") String signature,@RequestParam(value = "rawData") String rawData,
-                       @RequestParam(value = "encryptedData") String encryptedData,@RequestParam(value = "iv") String iv){
+                       @RequestParam(value = "encryptedData") String encryptedData,@RequestParam(value = "iv") String iv,@RequestParam(value = "openId") String openId){
         try {
-            baseVo = wechatService.phone(userType, sessionKey, signature, rawData, encryptedData, iv);
+            baseVo = wechatService.phone(userType, sessionKey, signature, rawData, encryptedData, iv,openId);
         } catch (Exception e) {
             throw new RemoteServiceException(501, "远程服务异常");
         }

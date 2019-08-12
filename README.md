@@ -13,5 +13,8 @@
 ## consumer
 > 客户端，添加单元测试
 
+## 启动顺序
+> user-roles---> wechat  ---> rest-api
+
 
 

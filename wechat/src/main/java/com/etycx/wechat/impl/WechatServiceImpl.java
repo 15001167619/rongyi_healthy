@@ -4,7 +4,7 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.etycx.remote.response.BaseVo;
-import com.etycx.remote.service.IAuthUserService;
+import com.etycx.remote.service.ISysUserService;
 import com.etycx.remote.service.IWechatService;
 import com.etycx.wechat.common.constant.WechatConstants;
 import com.etycx.wechat.config.WxConfiguration;
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 /**
@@ -32,8 +33,11 @@ import java.util.function.Function;
 @ExceptionListener
 public class WechatServiceImpl implements IWechatService {
 
+//    @Reference(version = "1.0.0",check = false)
+//    private IAuthUserService authUserService;
+
     @Reference(version = "1.0.0",check = false)
-    private IAuthUserService authUserService;
+    private ISysUserService sysUserService;
 
     private final BaseVo baseVo = new BaseVo();
 
@@ -44,27 +48,44 @@ public class WechatServiceImpl implements IWechatService {
             return baseVo.error("user check failed");
         }
         WxMaUserInfo userInfo = wxService.getUserService().getUserInfo(sessionKey, encryptedData, iv);
-        Map<String,Object> params = new HashMap<>(1);
-        params.put("credenceUnique",userInfo.getOpenId());
-        BaseVo tokenData = authUserService.createAuthenticationToken(params);
-        if( tokenData != null && tokenData.getError() == 0){
-            Map<String,Object> returnMap = new HashMap<>(2);
-            returnMap.put("tokenData",tokenData.getData());
-            returnMap.put("userData",userInfo);
-            return baseVo.ok(returnMap,"解密用户信息成功");
+        if(userInfo!=null){
+            BiConsumer<WxMaUserInfo,Integer> initUserInfoFun = new WechatServiceImpl() :: initUserInfo;
+            initUserInfoFun.accept(userInfo,userType);
+            Map<String,Object> params = new HashMap<>(1);
+            params.put("credenceUnique",userInfo.getOpenId());
+//            BaseVo tokenData = authUserService.createAuthenticationToken(params);
+//            if( tokenData != null && tokenData.getError() == 0){
+//                Map<String,Object> returnMap = new HashMap<>(2);
+//                returnMap.put("tokenData",tokenData.getData());
+//                returnMap.put("userData",userInfo);
+//                return baseVo.ok(returnMap,"解密用户信息成功");
+//            }
         }
         return baseVo.ok(null,"解密用户信息失败");
     }
 
+    private void initUserInfo(WxMaUserInfo wxMaUserInfo, Integer userType) {
+        sysUserService.saveWechatUser(wxMaUserInfo,userType);
+    }
+
+
     @Override
-    public BaseVo phone(Integer userType, String sessionKey, String signature, String rawData, String encryptedData, String iv) {
+    public BaseVo phone(Integer userType, String sessionKey, String signature, String rawData, String encryptedData, String iv, String openId) {
         WxMaService wxService = checkUserInfo(userType, sessionKey, signature, rawData);
         if(wxService == null){
             return baseVo.error("user check failed");
         }
         WxMaPhoneNumberInfo phoneNoInfo = wxService.getUserService().getPhoneNoInfo(sessionKey, encryptedData, iv);
+        //会员信息手机号录入
+        try {
+            sysUserService.initWechatUserPhone(openId,phoneNoInfo.getPhoneNumber());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return baseVo.ok(phoneNoInfo,"获取手机号成功");
     }
+
+
 
     /**
      * <p>

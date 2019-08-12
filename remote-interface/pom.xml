@@ -24,6 +24,7 @@
         <lombok.version>1.18.6</lombok.version>
         <mp.springboot.version>3.0.7.1</mp.springboot.version>
         <pagehelper.version>1.2.10</pagehelper.version>
+        <weixin-java-miniapp.version>3.4.0</weixin-java-miniapp.version>
     </properties>
 
     <dependencies>
@@ -68,6 +69,11 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
             <version>${mp.springboot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-miniapp</artifactId>
+            <version>${weixin-java-miniapp.version}</version>
         </dependency>
     </dependencies>
 

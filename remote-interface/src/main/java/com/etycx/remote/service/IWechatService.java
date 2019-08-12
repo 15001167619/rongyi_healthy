@@ -42,8 +42,11 @@ public interface IWechatService{
      * @param rawData
      * @param encryptedData
      * @param iv
+     * @param openId
      * @return BaseVo
      */
-    BaseVo phone(Integer userType,String sessionKey, String signature,String rawData, String encryptedData, String iv);
+    BaseVo phone(Integer userType,String sessionKey, String signature,String rawData, String encryptedData, String iv, String openId);
+
+
 
 }

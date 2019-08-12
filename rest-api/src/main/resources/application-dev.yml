@@ -3,10 +3,10 @@ dubbo:
     name: healthy-consumer-rest-api
   registry:
     protocol: zookeeper
-    address: 127.0.0.1:2181
+    address: 39.106.60.71:2181
   protocol:
     name: dubbo
-    port: 20889
+    port: 20882
   version: 1.0.0
   scan:
     base-packages: com.etycx.rest
