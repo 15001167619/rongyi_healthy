@@ -5,9 +5,12 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 获取map中值的工具类,自动进行类型转换
+ * <p>
+ *      微信管理 获取map中值的工具类,自动进行类型转换
+ * </p>
  *
- * @author DT_panda
+ * @author 武海升
+ * @date  2019-08-12
  */
 public class MapUtils {
 

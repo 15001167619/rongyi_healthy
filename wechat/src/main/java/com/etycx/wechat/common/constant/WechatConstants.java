@@ -1,5 +1,13 @@
 package com.etycx.wechat.common.constant;
 
+/**
+ * <p>
+ *      微信管理 常量类
+ * </p>
+ *
+ * @author 武海升
+ * @date  2019-08-12
+ */
 public class WechatConstants {
 
     /**

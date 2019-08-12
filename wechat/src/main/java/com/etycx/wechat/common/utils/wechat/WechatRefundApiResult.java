@@ -1,5 +1,13 @@
 package com.etycx.wechat.common.utils.wechat;
 
+/**
+ * <p>
+ *      微信管理 返回结果
+ * </p>
+ *
+ * @author 武海升
+ * @date  2019-08-12
+ */
 public class WechatRefundApiResult {
 
 	private String return_code;

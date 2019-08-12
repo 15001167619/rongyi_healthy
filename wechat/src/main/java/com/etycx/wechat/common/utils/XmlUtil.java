@@ -11,11 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * xml相关的工具类
+ * <p>
+ *      微信管理 xml 工具类
+ * </p>
  *
- * @author yang.y
+ * @author 武海升
+ * @date  2019-08-12
  */
-@SuppressWarnings("unchecked")
 public class XmlUtil {
 
     /**
