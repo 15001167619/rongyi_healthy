@@ -40,7 +40,7 @@ apiSign = md5(原始字符串)
 
 原始字符串 组成 
 
-appKey=823e00c2814a405ba69e3d58ffba304b#interfaceName=menuList#timestamp=timestamp#dataParams=
+appKey=823e00c2814a405ba69e3d58ffba304b#interfaceName=menuList#timestamp=timestamp#healthExamination=1#dataParams=fdsfz
 
 注意上面的顺序和等号左右不能有空格
 
@@ -48,8 +48,8 @@ appKey=823e00c2814a405ba69e3d58ffba304b#interfaceName=menuList#timestamp=timesta
 
 ```
 {
-   "code": -200000,
-   "message": "权益不存在",
+   "code": 50000,
+   "message": "不存在",
 }
 ```
 
@@ -58,7 +58,7 @@ appKey=823e00c2814a405ba69e3d58ffba304b#interfaceName=menuList#timestamp=timesta
 > code 
 
 code 为 0 表示成功 
-code 小于0 具体错误查看 返回的 message 来判断
+code 其它值 具体错误查看 返回的 message 来判断
 
 > message 
   
