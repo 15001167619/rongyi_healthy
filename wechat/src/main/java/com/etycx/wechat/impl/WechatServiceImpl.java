@@ -12,6 +12,7 @@ import com.etycx.wechat.common.constant.WechatConstants;
 import com.etycx.wechat.common.utils.DateUtils;
 import com.etycx.wechat.common.utils.MapUtils;
 import com.etycx.wechat.common.utils.XmlUtil;
+import com.etycx.wechat.common.utils.wechat.PaymentUtils;
 import com.etycx.wechat.common.utils.wechat.WechatRefundApiResult;
 import com.etycx.wechat.common.utils.wechat.WechatUtil;
 import com.etycx.wechat.config.WxConfiguration;
@@ -100,7 +101,7 @@ public class WechatServiceImpl implements IWechatService {
     }
 
     @Override
-    public BaseVo prepay(Integer orderId) {
+    public BaseVo prepay(Integer orderId,HttpServletRequest request) {
         //查询 通过订单号查询
         HealthyOrder orderInfo = new HealthyOrder();
         String nonceStr = RandomStringUtils.randomAlphanumeric(32).toUpperCase();
@@ -112,7 +113,7 @@ public class WechatServiceImpl implements IWechatService {
             // 商家账号
             params.put("mch_id", WxConfiguration.getPayService().get("mchId"));
             // 随机字符串
-            params.put("nonce_str", RandomStringUtils.randomAlphanumeric(18).toUpperCase());
+            params.put("nonce_str", nonceStr);
             // 商户订单编号
             params.put("out_trade_no", orderInfo.getOrderNo());
             // 商品描述
@@ -125,6 +126,11 @@ public class WechatServiceImpl implements IWechatService {
             params.put("trade_type", WxConfiguration.getPayService().get("tradeType"));
             // 支付 openId
             params.put("openid", orderInfo.getUserId());
+            String spbill_create_ip = PaymentUtils.getIpAddress(request);
+            if (!PaymentUtils.isIp(spbill_create_ip)) {
+                spbill_create_ip = "127.0.0.1";
+            }
+            params.put("spbill_create_ip", spbill_create_ip);
             String sign = WechatUtil.arraySign(params, (String) WxConfiguration.getPayService().get("paySignKey"));
             // 数字签证
             params.put("sign", sign);
