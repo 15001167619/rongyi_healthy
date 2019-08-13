@@ -55,7 +55,7 @@ public interface IPhysicalExaminationService {
 
     /**
      * <p>
-     *      企业体检  负责人登记，建立企业名片（联系人电话、联系人公司名称、联系人姓名）
+     *      企业体检  企业名片（新增/修改）负责人登记，建立企业名片（联系人电话、联系人公司名称、联系人姓名、是否签约用户）
      * </p>
      *
      * @author 武海升
@@ -63,7 +63,31 @@ public interface IPhysicalExaminationService {
      * @param params
      * @return BaseVo
      */
-    BaseVo createBusinessCard(Map<String, Object> params);
+    BaseVo companyCard(Map<String, Object> params);
+
+    /**
+     * <p>
+     *      企业体检  企业名片详情（查看）
+     * </p>
+     *
+     * @author 武海升
+     * @date  2019-08-13
+     * @param params
+     * @return BaseVo
+     */
+    BaseVo companyCardInfo(Map<String, Object> params);
+
+    /**
+     * <p>
+     *      企业体检  企业名片（删除）
+     * </p>
+     *
+     * @author 武海升
+     * @date  2019-08-13
+     * @param params
+     * @return BaseVo
+     */
+    BaseVo delCompanyCard(Map<String, Object> params);
 
     /**
      * <p>
