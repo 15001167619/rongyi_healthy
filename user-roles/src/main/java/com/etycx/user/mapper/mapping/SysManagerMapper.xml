@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.user.mapper.SysManagerMapper">
+
+    <select id="testList" resultType="map" parameterType="map">
+        select id from rongyi_healthy_physical_examination_one.healthy_order
+            union
+        select id from rongyi_healthy_physical_examination_two.healthy_order
+    </select>
+
+
+</mapper>

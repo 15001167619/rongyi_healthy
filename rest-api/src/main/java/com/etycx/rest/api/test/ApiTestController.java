@@ -40,4 +40,15 @@ public class ApiTestController {
         return true;
     }
 
+    /**
+     * @description  跨数据库测试
+     */
+    @GetMapping("database")
+    public Object database(){
+        departmentServiceOne.getDepartmentList(null);
+        log.info("~~~~~~~~~~~~~~");
+        departmentServiceTwo.getDepartmentList(null);
+        return true;
+    }
+
 }
