@@ -27,18 +27,21 @@ public class ApiPayController {
      * @description  获取支付的请求参数
      */
     @PostMapping("prepay")
-    public Object info(@RequestParam(value = "orderId") Integer orderId){
+    public Object info(@RequestParam(value = "orderId") Integer orderId,HttpServletRequest request){
         try {
-            baseVo = wechatService.prepay(orderId);
+            baseVo = wechatService.prepay(orderId,request);
         } catch (Exception e) {
             throw new RemoteServiceException(501, "远程服务异常");
         }
         return baseVo;
     }
 
-    @PostMapping(value = "notify", produces = "text/html;charset=UTF-8")
-    public void notify(HttpServletRequest request, HttpServletResponse response) {
-        wechatService.notify(request,response);
+    /**
+     * @description  微信支付通知
+     */
+    @RequestMapping(value = "notify")
+    public void appNotify(HttpServletRequest request, HttpServletResponse response){
+        wechatService.notify(request, response);
     }
 
 }

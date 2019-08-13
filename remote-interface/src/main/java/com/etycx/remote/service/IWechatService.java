@@ -61,7 +61,7 @@ public interface IWechatService{
      * @param orderId
      * @return BaseVo
      */
-    BaseVo prepay(Integer orderId);
+    BaseVo prepay(Integer orderId,HttpServletRequest request);
 
     /**
      * <p>
